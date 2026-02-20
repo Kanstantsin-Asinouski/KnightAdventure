@@ -31,7 +31,6 @@ public class EnemyAi : MonoBehaviour
 
     private float _nextCheckDirectionTime = 0f;
     private float _nextDirectionDuration = 0.1f;
-    private Vector3 _lastPosition;
 
     public event EventHandler OnEnemyAttack;
 
