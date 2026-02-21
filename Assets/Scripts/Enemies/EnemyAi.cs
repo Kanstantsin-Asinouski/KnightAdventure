@@ -159,7 +159,14 @@ public class EnemyAi : MonoBehaviour
         {
             if (distanceToPlayer <= _chasingDistance)
             {
-                newState = State.Chasing;
+                if (Player.Instance.IsAlive)
+                {
+                    newState = State.Attacking;
+                }
+                else
+                {
+                    newState = State.Roaming;
+                }
             }
         }
 

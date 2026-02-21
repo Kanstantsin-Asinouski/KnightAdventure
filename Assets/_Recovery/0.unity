@@ -305,6 +305,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 942468704326942106, guid: d91326e403b9f0d47ab3dca483c7b9cb, type: 3}
   m_PrefabInstance: {fileID: 194386381}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &275230628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5912120661590039960, guid: bde67e9902664244b85a58a392e52da0, type: 3}
+  m_PrefabInstance: {fileID: 7333558597180865795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &275230634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275230628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d295109d8753024daf164cb4d05970a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashBlink
+  _damagableObject: {fileID: 7333558597180865798}
+  _blinkMaterial: {fileID: 2100000, guid: 1b09967985fbb2a4f992edc29795ecc5, type: 2}
+  _blinkDuration: 0.2
 --- !u!1001 &768794457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1532,6 +1552,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6839395309191791016, guid: bde67e9902664244b85a58a392e52da0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7333558597180865797}
+    - targetCorrespondingSourceObject: {fileID: 5912120661590039960, guid: bde67e9902664244b85a58a392e52da0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 275230634}
   m_SourcePrefab: {fileID: 100100000, guid: bde67e9902664244b85a58a392e52da0, type: 3}
 --- !u!1 &7333558597180865796 stripped
 GameObject:
@@ -1552,6 +1575,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnockBack
   _knockBackForce: 1
   _knockBackMovingTimeMax: 0.3
+--- !u!114 &7333558597180865798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1328854625008930600, guid: bde67e9902664244b85a58a392e52da0, type: 3}
+  m_PrefabInstance: {fileID: 7333558597180865795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333558597180865796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12e7af430705934ab5a3ad890f14ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
