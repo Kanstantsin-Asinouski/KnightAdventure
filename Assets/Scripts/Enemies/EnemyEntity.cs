@@ -21,6 +21,8 @@ public class EnemyEntity : MonoBehaviour
         _polygonCollider2D = GetComponent<PolygonCollider2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _enemyAi = GetComponent<EnemyAi>();
+
+        _polygonCollider2D.enabled = false;
     }
 
     private void Start()
@@ -28,8 +30,11 @@ public class EnemyEntity : MonoBehaviour
         _currentHealth = _enemySO.enemyHealth;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_polygonCollider2D.enabled)
+            return;
+
         if (collision.transform.TryGetComponent(out Player player))
         {
             player.TakeDamage(transform, _enemySO.enemyDamageAmount);
