@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4607979972974108256
+--- !u!1 &4503733226601980420
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4154091600061567620}
-  - component: {fileID: 5153395632426495680}
-  - component: {fileID: 177980760648653369}
-  - component: {fileID: 7347267658166117914}
+  - component: {fileID: 4407918432324391447}
+  - component: {fileID: 7293972024043622977}
+  - component: {fileID: 8889930345056784239}
   m_Layer: 0
-  m_Name: SingleBush
+  m_Name: SingleBushVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4154091600061567620
+--- !u!4 &4407918432324391447
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4607979972974108256}
+  m_GameObject: {fileID: 4503733226601980420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.73, y: -2.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4154091600061567620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5153395632426495680
+--- !u!212 &7293972024043622977
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4607979972974108256}
+  m_GameObject: {fileID: 4503733226601980420}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -93,6 +92,55 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8889930345056784239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4503733226601980420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a3185743b33cc459cb4680f43b1c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestructiblePlantVisual
+  _destructiblePlant: {fileID: 1865518656439407272}
+  _bushDeathVFXPrefab: {fileID: 4214750919551486428, guid: 0db4a9ccd2b29464b83b891e100e6d95, type: 3}
+--- !u!1 &4607979972974108256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4154091600061567620}
+  - component: {fileID: 177980760648653369}
+  - component: {fileID: 7347267658166117914}
+  - component: {fileID: 1865518656439407272}
+  m_Layer: 0
+  m_Name: SingleBush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4154091600061567620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607979972974108256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.73, y: -2.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4407918432324391447}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &177980760648653369
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +194,15 @@ MonoBehaviour:
   m_Center: {x: 0.003093958, y: 0.0037860274, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &1865518656439407272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607979972974108256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c4c79e8fea95049858c6b126f4dbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestrictiblePlant

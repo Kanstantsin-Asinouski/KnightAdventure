@@ -22,6 +22,11 @@ public class PlayerVisual : MonoBehaviour
         Player.Instance.OnPlayerDeath += Player_OnPlayerDeath;
     }
 
+    private void OnDestroy()
+    {
+        Player.Instance.OnPlayerDeath -= Player_OnPlayerDeath;
+    }
+
     private void Player_OnPlayerDeath(object sender, System.EventArgs e)
     {
         _animator.SetBool(_IS_DIE, true);
