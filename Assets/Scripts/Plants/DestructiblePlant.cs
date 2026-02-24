@@ -1,18 +1,23 @@
+using Assets.Scripts.Game;
+using Assets.Scripts.Weapons.Sword;
 using System;
 using UnityEngine;
 
-public class DestructiblePlant : MonoBehaviour
+namespace Assets.Scripts.Plants
 {
-    public event EventHandler OnDesctrictibleTakenDamage;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class DestructiblePlant : MonoBehaviour
     {
-        if (collision.gameObject.GetComponent<Sword>())
-        {
-            OnDesctrictibleTakenDamage?.Invoke(this, EventArgs.Empty);
-            Destroy(gameObject);
+        public event EventHandler OnDesctrictibleTakenDamage;
 
-            NavMeshSurfacManagement.Instance.RebakeNavmeshSurface();
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.GetComponent<Sword>())
+            {
+                OnDesctrictibleTakenDamage?.Invoke(this, EventArgs.Empty);
+                Destroy(gameObject);
+
+                NavMeshSurfaceManagement.Instance.RebakeNavmeshSurface();
+            }
         }
     }
 }

@@ -1,78 +1,81 @@
 using System;
 using UnityEngine;
 
-public class FlashBlink : MonoBehaviour
+namespace Assets.Scripts.Misc
 {
-    [SerializeField] private MonoBehaviour damagableObject;
-    [SerializeField] private Material blinkMaterial;
-    [SerializeField] private float blinkDuration = 0.2f;
-
-    private float _blinkTimer;
-    private Material _defaultMaterial;
-    private SpriteRenderer _spriteRenderer;
-    private bool _isBlinking;
-
-    private void Awake()
+    public class FlashBlink : MonoBehaviour
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        [SerializeField] private MonoBehaviour damagableObject;
+        [SerializeField] private Material blinkMaterial;
+        [SerializeField] private float blinkDuration = 0.2f;
 
-        _defaultMaterial = _spriteRenderer.sharedMaterial;
+        private float _blinkTimer;
+        private Material _defaultMaterial;
+        private SpriteRenderer _spriteRenderer;
+        private bool _isBlinking;
 
-        _isBlinking = false;
-    }
-
-    private void Start()
-    {
-        if (damagableObject is Player player)
+        private void Awake()
         {
-            player.OnFlashBlink += DamagableObject_OnFlashBlink;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            _defaultMaterial = _spriteRenderer.sharedMaterial;
+
+            _isBlinking = false;
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (damagableObject is Player player)
+        private void Start()
         {
-            player.OnFlashBlink -= DamagableObject_OnFlashBlink;
-        }
-    }
-
-    private void Update()
-    {
-        if (_isBlinking)
-        {
-            _blinkTimer -= Time.deltaTime;
-            if (_blinkTimer <= 0f)
+            if (damagableObject is Player.Player player)
             {
-                RestoreDefaultMaterial();
+                player.OnFlashBlink += DamagableObject_OnFlashBlink;
             }
         }
-    }
 
-    public void StopBlinking()
-    {
-        _isBlinking = false;
-        RestoreDefaultMaterial();
-    }
-
-    private void StartBlinkingMaterial()
-    {
-        _spriteRenderer.material = blinkMaterial;
-        _blinkTimer = blinkDuration;
-        _isBlinking = true;
-    }
-
-    private void RestoreDefaultMaterial()
-    {
-        _spriteRenderer.sharedMaterial = _defaultMaterial;
-        _isBlinking = false;
-    }
-
-    private void DamagableObject_OnFlashBlink(object sender, EventArgs e)
-    {
-        if (_spriteRenderer.sharedMaterial == _defaultMaterial)
+        private void OnDestroy()
         {
-            StartBlinkingMaterial();
+            if (damagableObject is Player.Player player)
+            {
+                player.OnFlashBlink -= DamagableObject_OnFlashBlink;
+            }
+        }
+
+        private void Update()
+        {
+            if (_isBlinking)
+            {
+                _blinkTimer -= Time.deltaTime;
+                if (_blinkTimer <= 0f)
+                {
+                    RestoreDefaultMaterial();
+                }
+            }
+        }
+
+        public void StopBlinking()
+        {
+            _isBlinking = false;
+            RestoreDefaultMaterial();
+        }
+
+        private void StartBlinkingMaterial()
+        {
+            _spriteRenderer.material = blinkMaterial;
+            _blinkTimer = blinkDuration;
+            _isBlinking = true;
+        }
+
+        private void RestoreDefaultMaterial()
+        {
+            _spriteRenderer.sharedMaterial = _defaultMaterial;
+            _isBlinking = false;
+        }
+
+        private void DamagableObject_OnFlashBlink(object sender, EventArgs e)
+        {
+            if (_spriteRenderer.sharedMaterial == _defaultMaterial)
+            {
+                StartBlinkingMaterial();
+            }
         }
     }
 }

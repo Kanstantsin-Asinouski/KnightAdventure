@@ -1,52 +1,56 @@
+using Assets.Scripts.Enemies;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(PolygonCollider2D))]
-public class Sword : MonoBehaviour
+namespace Assets.Scripts.Weapons.Sword
 {
-    [SerializeField] private int damageAmount;
-
-    public event EventHandler OnSwordSwing;
-
-    private PolygonCollider2D _polygonCollider2D;
-
-    private void Awake()
+    [RequireComponent(typeof(PolygonCollider2D))]
+    public class Sword : MonoBehaviour
     {
-        _polygonCollider2D = GetComponent<PolygonCollider2D>();
-    }
+        [SerializeField] private int damageAmount;
 
-    private void Start()
-    {
-        AttackColliderTurnOff();
-    }
+        public event EventHandler OnSwordSwing;
 
-    public void Attack()
-    {
-        AttackColliderTurnOffOn();
+        private PolygonCollider2D _polygonCollider2D;
 
-        OnSwordSwing?.Invoke(this, EventArgs.Empty);
-    }
-    public void AttackColliderTurnOff()
-    {
-        _polygonCollider2D.enabled = false;
-    }
-
-    private void AttackColliderTurnOn()
-    {
-        _polygonCollider2D.enabled = true;
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.TryGetComponent(out EnemyEntity enemyEntity))
+        private void Awake()
         {
-            enemyEntity.TakeDamage(damageAmount);
+            _polygonCollider2D = GetComponent<PolygonCollider2D>();
         }
-    }
 
-    private void AttackColliderTurnOffOn()
-    {
-        AttackColliderTurnOff();
-        AttackColliderTurnOn();
+        private void Start()
+        {
+            AttackColliderTurnOff();
+        }
+
+        public void Attack()
+        {
+            AttackColliderTurnOffOn();
+
+            OnSwordSwing?.Invoke(this, EventArgs.Empty);
+        }
+        public void AttackColliderTurnOff()
+        {
+            _polygonCollider2D.enabled = false;
+        }
+
+        private void AttackColliderTurnOn()
+        {
+            _polygonCollider2D.enabled = true;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.transform.TryGetComponent(out EnemyEntity enemyEntity))
+            {
+                enemyEntity.TakeDamage(damageAmount);
+            }
+        }
+
+        private void AttackColliderTurnOffOn()
+        {
+            AttackColliderTurnOff();
+            AttackColliderTurnOn();
+        }
     }
 }

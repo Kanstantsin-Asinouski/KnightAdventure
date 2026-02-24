@@ -1,53 +1,56 @@
 using System;
 using UnityEngine;
 
-[RequireComponent (typeof(Rigidbody2D))]
-public class KnockBack : MonoBehaviour
+namespace Assets.Scripts.Game
 {
-    [SerializeField] private float knockBackForce;
-    [SerializeField] private float knockBackMovingTimeMax;
-
-    private Rigidbody2D _rb;    
-
-    private float _knockBackMovingTimeTimer;
-
-    public bool IsGettingKnockBack { get; private set; }
-
-    private void Start()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class KnockBack : MonoBehaviour
     {
-        knockBackForce = 3f;
-        knockBackMovingTimeMax = 0.3f;
-    }
+        [SerializeField] private float knockBackForce;
+        [SerializeField] private float knockBackMovingTimeMax;
 
-    private void Awake()
-    {        
-        _rb = GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D _rb;
 
-    private void Update()
-    {
-        if (!IsGettingKnockBack) 
-            return;
+        private float _knockBackMovingTimeTimer;
 
-        _knockBackMovingTimeTimer -= Time.deltaTime;
+        public bool IsGettingKnockBack { get; private set; }
 
-        if (_knockBackMovingTimeTimer < 0)
+        private void Start()
         {
-            StopKnockBackMovement();
+            knockBackForce = 3f;
+            knockBackMovingTimeMax = 0.3f;
         }
-    }
 
-    public void GetKnockedBack(Transform damageSource)
-    {
-        IsGettingKnockBack = true;
-        _knockBackMovingTimeTimer = knockBackMovingTimeMax;
-        Vector2 difference = (transform.position - damageSource.position).normalized * knockBackForce;
-        _rb.AddForce(difference, ForceMode2D.Impulse);
-    }
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
-    public void StopKnockBackMovement()
-    {
-        _rb.linearVelocity = Vector2.zero;
-        IsGettingKnockBack = false;
+        private void Update()
+        {
+            if (!IsGettingKnockBack)
+                return;
+
+            _knockBackMovingTimeTimer -= Time.deltaTime;
+
+            if (_knockBackMovingTimeTimer < 0)
+            {
+                StopKnockBackMovement();
+            }
+        }
+
+        public void GetKnockedBack(Transform damageSource)
+        {
+            IsGettingKnockBack = true;
+            _knockBackMovingTimeTimer = knockBackMovingTimeMax;
+            Vector2 difference = (transform.position - damageSource.position).normalized * knockBackForce;
+            _rb.AddForce(difference, ForceMode2D.Impulse);
+        }
+
+        public void StopKnockBackMovement()
+        {
+            _rb.linearVelocity = Vector2.zero;
+            IsGettingKnockBack = false;
+        }
     }
 }
