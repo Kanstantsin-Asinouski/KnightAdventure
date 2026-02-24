@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapons.Sword
     {
         [SerializeField] private Sword sword;
         private Animator _animator;
-        private const string _ATTACK = "Attack";
+        private const string Attack = "Attack";
 
         private void Awake()
         {
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Weapons.Sword
 
         private void Sword_OnSwordSwing(object sender, System.EventArgs e)
         {
-            _animator.SetTrigger(_ATTACK);
+            _animator.SetTrigger(Attack);
         }
     }
 }

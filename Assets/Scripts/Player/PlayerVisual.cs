@@ -11,8 +11,8 @@ namespace Assets.Scripts.Player
         private SpriteRenderer _spriteRenderer;
         private FlashBlink _flashBlink;
 
-        private const string _IS_RUNNING = "IsRunning";
-        private const string _IS_DIE = "IsDie";
+        private const string IsRunning = "IsRunning";
+        private const string IsDie = "IsDie";
 
         private void Awake()
         {
@@ -33,13 +33,13 @@ namespace Assets.Scripts.Player
 
         private void Player_OnPlayerDeath(object sender, System.EventArgs e)
         {
-            _animator.SetBool(_IS_DIE, true);
+            _animator.SetBool(IsDie, true);
             _flashBlink.StopBlinking();
         }
 
         private void Update()
         {
-            _animator.SetBool(_IS_RUNNING, Player.Instance.IsRunning());
+            _animator.SetBool(IsRunning, Player.Instance.IsRunning());
 
             if (Player.Instance.IsAlive)
                 AdjustPlayerFacingDirection();
