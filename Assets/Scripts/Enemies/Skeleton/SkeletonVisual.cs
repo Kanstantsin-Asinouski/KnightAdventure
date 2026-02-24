@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SkeletonVisual : MonoBehaviour
 {
-    [SerializeField] private EnemyAi _enemyAI;
-    [SerializeField] private EnemyEntity _enemyEntity;
-    [SerializeField] private GameObject _enemyShadow;
+    [SerializeField] private EnemyAi enemyAI;
+    [SerializeField] private EnemyEntity enemyEntity;
+    [SerializeField] private GameObject enemyShadow;
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -26,32 +26,32 @@ public class SkeletonVisual : MonoBehaviour
 
     private void Start()
     {
-        _enemyAI.OnEnemyAttack += _enemyAI_OnEnemyAttack;
-        _enemyEntity.OnTakeHit += _enemyEntity_OnTakeHit;
-        _enemyEntity.OnDeath += _enemyEntity_OnDeath;
+        enemyAI.OnEnemyAttack += _enemyAI_OnEnemyAttack;
+        enemyEntity.OnTakeHit += _enemyEntity_OnTakeHit;
+        enemyEntity.OnDeath += _enemyEntity_OnDeath;
     }
 
     private void OnDestroy()
     {
-        _enemyAI.OnEnemyAttack -= _enemyAI_OnEnemyAttack;
-        _enemyEntity.OnTakeHit -= _enemyEntity_OnTakeHit;
-        _enemyEntity.OnDeath -= _enemyEntity_OnDeath;
+        enemyAI.OnEnemyAttack -= _enemyAI_OnEnemyAttack;
+        enemyEntity.OnTakeHit -= _enemyEntity_OnTakeHit;
+        enemyEntity.OnDeath -= _enemyEntity_OnDeath;
     }
 
     private void Update()
     {
-        _animator.SetBool(_IS_RUNNING, _enemyAI.IsRunning);
-        _animator.SetFloat(_CHASING_SPEED_MULTUPLIER, _enemyAI.GetRoamingAnimationSpeed);
+        _animator.SetBool(_IS_RUNNING, enemyAI.IsRunning);
+        _animator.SetFloat(_CHASING_SPEED_MULTUPLIER, enemyAI.GetRoamingAnimationSpeed);
     }
     
     public void TriggerAttackAnimationTurnOff()
     {
-        _enemyEntity.AttackColliderTurnOff();
+        enemyEntity.AttackColliderTurnOff();
     }
 
     public void TriggerAttackAnimationTurnOn()
     {
-        _enemyEntity.AttackColliderTurnOn();
+        enemyEntity.AttackColliderTurnOn();
     }
 
     private void _enemyAI_OnEnemyAttack(object sender, EventArgs e)
@@ -67,6 +67,6 @@ public class SkeletonVisual : MonoBehaviour
     {
         _animator.SetBool(_IS_DIE, true);
         _spriteRenderer.sortingLayerID = 0;
-        _enemyShadow.SetActive(false);
+        enemyShadow.SetActive(false);
     }
 }

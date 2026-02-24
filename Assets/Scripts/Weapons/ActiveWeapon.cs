@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    [SerializeField] private Sword _sword;
+    [SerializeField] private Sword sword;
 
     public static ActiveWeapon Instance { get; private set; }
 
@@ -19,7 +19,7 @@ public class ActiveWeapon : MonoBehaviour
 
     public Sword GetActiveWeapon()
     {
-        return _sword;
+        return sword;
     }
 
     private void FollowMousePosition()

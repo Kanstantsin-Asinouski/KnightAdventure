@@ -6,18 +6,18 @@ using Random = UnityEngine.Random;
 
 public class EnemyAi : MonoBehaviour
 {
-    [SerializeField] private State _startingState;
-    [SerializeField] private float _roamingDistanceMax = 7f;
-    [SerializeField] private float _roamingDistanceMin = 3f;
-    [SerializeField] private float _roamingTimerMax = 2f;
+    [SerializeField] private State startingState;
+    [SerializeField] private float roamingDistanceMax = 7f;
+    [SerializeField] private float roamingDistanceMin = 3f;
+    [SerializeField] private float roamingTimerMax = 2f;
 
-    [SerializeField] private bool _isChasingEnemy = false;
-    [SerializeField] private float _chasingDistance = 4f;
-    [SerializeField] private float _chasingSpeedMultiplier = 2f;
+    [SerializeField] private bool isChasingEnemy = false;
+    [SerializeField] private float chasingDistance = 4f;
+    [SerializeField] private float chasingSpeedMultiplier = 2f;
 
-    [SerializeField] private bool _isAttackingEnemy = false;
-    [SerializeField] private float _attackingDistance = 2f;
-    [SerializeField] private float _attackRate = 2f;
+    [SerializeField] private bool isAttackingEnemy = false;
+    [SerializeField] private float attackingDistance = 2f;
+    [SerializeField] private float attackRate = 2f;
     private float _nextAttackTime = 0f;
 
     private NavMeshAgent _navMeshAgent;
@@ -54,15 +54,15 @@ public class EnemyAi : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
-        _currentState = _startingState;
+        _currentState = startingState;
 
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
 
         _roamingSpeed = _navMeshAgent.speed;
-        _chasingSpeed = _navMeshAgent.speed * _chasingSpeedMultiplier;
+        _chasingSpeed = _navMeshAgent.speed * chasingSpeedMultiplier;
 
-        _navMeshAgent.stoppingDistance = _attackingDistance * 0.9f;
+        _navMeshAgent.stoppingDistance = attackingDistance * 0.9f;
     }
 
     private void Update()
@@ -91,7 +91,7 @@ public class EnemyAi : MonoBehaviour
                 if (_roamingTimer < 0)
                 {
                     Roaming();
-                    _roamingTimer = _roamingTimerMax;
+                    _roamingTimer = roamingTimerMax;
                 }
 
                 CheckCurrentState();
@@ -120,7 +120,7 @@ public class EnemyAi : MonoBehaviour
         if (Time.time > _nextAttackTime)
         {
             OnEnemyAttack?.Invoke(this, EventArgs.Empty);
-            _nextAttackTime = Time.time + _attackRate;
+            _nextAttackTime = Time.time + attackRate;
         }
     }
 
@@ -155,9 +155,9 @@ public class EnemyAi : MonoBehaviour
 
         State newState = State.Roaming;
 
-        if (_isChasingEnemy)
+        if (isChasingEnemy)
         {
-            if (distanceToPlayer <= _chasingDistance)
+            if (distanceToPlayer <= chasingDistance)
             {
                 if (Player.Instance.IsAlive)
                 {
@@ -170,9 +170,9 @@ public class EnemyAi : MonoBehaviour
             }
         }
 
-        if (_isAttackingEnemy)
+        if (isAttackingEnemy)
         {
-            if (distanceToPlayer <= _attackingDistance)
+            if (distanceToPlayer <= attackingDistance)
             {
                 newState = State.Attacking;
             }
@@ -218,7 +218,7 @@ public class EnemyAi : MonoBehaviour
 
     private Vector3 GetRoamingPosition()
     {
-        return _startingPosition + FriendsUtils.GetRandomDir() * Random.Range(_roamingDistanceMin, _roamingDistanceMax);
+        return _startingPosition + FriendsUtils.GetRandomDir() * Random.Range(roamingDistanceMin, roamingDistanceMax);
     }
 
     private void ChangeFacingDirection(Vector3 sourcePosition, Vector3 targetPosition)

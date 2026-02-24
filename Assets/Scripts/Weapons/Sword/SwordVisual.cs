@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class SwordVisual : MonoBehaviour
 {
-    [SerializeField] private Sword _sword;
+    [SerializeField] private Sword sword;
     private Animator _animator;
     private const string _ATTACK = "Attack";
 
@@ -14,17 +14,17 @@ public class SwordVisual : MonoBehaviour
 
     private void Start()
     {
-        _sword.OnSwordSwing += Sword_OnSwordSwing;
+        sword.OnSwordSwing += Sword_OnSwordSwing;
     }
 
     private void OnDestroy()
     {
-        _sword.OnSwordSwing -= Sword_OnSwordSwing;
+        sword.OnSwordSwing -= Sword_OnSwordSwing;
     }
 
     public void TriggerEndAttackAnimation()
     {
-        _sword.AttackColliderTurnOff();
+        sword.AttackColliderTurnOff();
     }
 
     private void Sword_OnSwordSwing(object sender, System.EventArgs e)
