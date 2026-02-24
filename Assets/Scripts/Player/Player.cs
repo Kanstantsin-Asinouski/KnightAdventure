@@ -28,11 +28,15 @@ namespace Assets.Scripts.Player
         private bool _isRunning;
         private Vector2 _inputVector;
 
+        private Camera _mainCamera;
+
         private void Awake()
         {
             Instance = this;
             _rigidBody = GetComponent<Rigidbody2D>();
             _knockBack = GetComponent<KnockBack>();
+
+            _mainCamera = Camera.main;
         }
 
         private void Start()
@@ -90,7 +94,7 @@ namespace Assets.Scripts.Player
 
         public Vector3 GetPlayerPosition()
         {
-            Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+            Vector3 playerPosition = _mainCamera.WorldToScreenPoint(transform.position);
             return playerPosition;
         }
 

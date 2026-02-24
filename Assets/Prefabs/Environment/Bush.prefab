@@ -204,5 +204,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a3185743b33cc459cb4680f43b1c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestructiblePlantVisual
-  _destructiblePlant: {fileID: 7712131905314897332}
-  _bushDeathVFXPrefab: {fileID: 4214750919551486428, guid: 0db4a9ccd2b29464b83b891e100e6d95, type: 3}
+  destructiblePlant: {fileID: 7712131905314897332}
+  bushDeathVFXPrefab: {fileID: 4214750919551486428, guid: 0db4a9ccd2b29464b83b891e100e6d95, type: 3}

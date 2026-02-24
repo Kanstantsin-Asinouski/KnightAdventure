@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f262ca506e87e1e429715af773d4f3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonVisual
-  _enemyAI: {fileID: 7687162777907215640}
-  _enemyEntity: {fileID: 2564244857797858550}
-  _enemyShadow: {fileID: 5014079340184835364}
+  enemyAI: {fileID: 0}
+  enemyEntity: {fileID: 0}
+  enemyShadow: {fileID: 0}
 --- !u!1 &2125120440023816143
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,16 +338,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4d62bc1f149094cb0bc4506d7571a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAi
-  _startingState: 1
-  _roamingDistanceMax: 7
-  _roamingDistanceMin: 3
-  _roamingTimerMax: 5
-  _isChasingEnemy: 1
-  _chasingDistance: 4
-  _chasingSpeedMultiplier: 2
-  _isAttackingEnemy: 1
-  _attackingDistance: 2
-  _attackRate: 1
+  startingState: 0
+  roamingDistanceMax: 7
+  roamingDistanceMin: 3
+  roamingTimerMax: 2
+  isChasingEnemy: 0
+  chasingDistance: 4
+  chasingSpeedMultiplier: 2
+  isAttackingEnemy: 0
+  attackingDistance: 2
+  attackRate: 2
 --- !u!114 &2564244857797858550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0065d9757e6098f44b0aeaabc121aced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEntity
-  _maxHealth: 8
+  enemySO: {fileID: 11400000, guid: 5a2beaf417f5a554bb4ebb5fcd69743f, type: 2}
 --- !u!1 &5014079340184835364
 GameObject:
   m_ObjectHideFlags: 0
