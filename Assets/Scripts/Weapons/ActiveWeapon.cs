@@ -30,14 +30,7 @@ namespace Assets.Scripts.Weapons
             Vector3 mousePosition = GameInput.Instance.GetMousePosition();
             Vector3 playerPosition = Player.Player.Instance.GetPlayerPosition();
 
-            if (mousePosition.x < playerPosition.x)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
+            transform.rotation = Quaternion.Euler(0, mousePosition.x < playerPosition.x ? 180 : 0, 0);
         }
     }
 }

@@ -76,7 +76,7 @@ namespace Assets.Scripts.Player
             {
                 _canTakeDamage = false;
                 _currentHealth = Mathf.Max(0, _currentHealth -= damage);
-                Debug.Log(_currentHealth);
+
                 _knockBack.GetKnockedBack(damageSource);
 
                 OnFlashBlink?.Invoke(this, EventArgs.Empty);
