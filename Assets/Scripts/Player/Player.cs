@@ -10,9 +10,9 @@ public class Player : MonoBehaviour
     public event EventHandler OnPlayerDeath; 
     public event EventHandler OnFlashBlink;
 
-    [SerializeField] private float _movingSpeed = 5f;
-    [SerializeField] private int _maxHealth = 10;
-    [SerializeField] private float _damageRecoveryTime = 0.5f;
+    [SerializeField] private float movingSpeed = 5f;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private float damageRecoveryTime = 0.5f;
 
     private Rigidbody2D _rigidBody;
     private KnockBack _knockBack;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = maxHealth;
         _canTakeDamage = true;
         _isAlive = true;
         _isRunning = false;
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         {
             _canTakeDamage = false;
             _currentHealth = Mathf.Max(0, _currentHealth -= damage);
-            Debug.Log(_currentHealth);
+
             _knockBack.GetKnockedBack(damageSource);
 
             OnFlashBlink?.Invoke(this, EventArgs.Empty);
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        _rigidBody.MovePosition(_rigidBody.position + _inputVector * (_movingSpeed * Time.fixedDeltaTime));
+        _rigidBody.MovePosition(_rigidBody.position + _inputVector * (movingSpeed * Time.fixedDeltaTime));
 
         if (Mathf.Abs(_inputVector.x) > _minMovingSpeed || Mathf.Abs(_inputVector.y) > _minMovingSpeed)
         {
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DamageRecoveryRoutine()
     {
-        yield return new WaitForSeconds(_damageRecoveryTime);
+        yield return new WaitForSeconds(damageRecoveryTime);
         _canTakeDamage = true;
     }
 

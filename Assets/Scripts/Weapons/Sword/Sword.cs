@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(PolygonCollider2D))]
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private int _damageAmount;
+    [SerializeField] private int damageAmount;
 
     public event EventHandler OnSwordSwing;
 
@@ -40,7 +40,7 @@ public class Sword : MonoBehaviour
     {
         if (collision.transform.TryGetComponent(out EnemyEntity enemyEntity))
         {
-            enemyEntity.TakeDamage(_damageAmount);
+            enemyEntity.TakeDamage(damageAmount);
         }
     }
 

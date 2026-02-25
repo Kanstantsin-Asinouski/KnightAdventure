@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent (typeof(Rigidbody2D))]
 public class KnockBack : MonoBehaviour
 {
-    [SerializeField] private float _knockBackForce;
-    [SerializeField] private float _knockBackMovingTimeMax;
+    [SerializeField] private float knockBackForce;
+    [SerializeField] private float knockBackMovingTimeMax;
 
     private Rigidbody2D _rb;    
 
@@ -15,8 +15,8 @@ public class KnockBack : MonoBehaviour
 
     private void Start()
     {
-        _knockBackForce = 3f;
-        _knockBackMovingTimeMax = 0.3f;
+        knockBackForce = 3f;
+        knockBackMovingTimeMax = 0.3f;
     }
 
     private void Awake()
@@ -40,8 +40,8 @@ public class KnockBack : MonoBehaviour
     public void GetKnockedBack(Transform damageSource)
     {
         IsGettingKnockBack = true;
-        _knockBackMovingTimeTimer = _knockBackMovingTimeMax;
-        Vector2 difference = (transform.position - damageSource.position).normalized * _knockBackForce;
+        _knockBackMovingTimeTimer = knockBackMovingTimeMax;
+        Vector2 difference = (transform.position - damageSource.position).normalized * knockBackForce;
         _rb.AddForce(difference, ForceMode2D.Impulse);
     }
 

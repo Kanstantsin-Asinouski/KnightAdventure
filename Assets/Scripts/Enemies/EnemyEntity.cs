@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyAi))]
 public class EnemyEntity : MonoBehaviour
 {
-    [SerializeField] private EnemySO _enemySO;
+    [SerializeField] private EnemySO enemySO;
     private int _currentHealth;
 
     private PolygonCollider2D _polygonCollider2D;
@@ -27,7 +27,7 @@ public class EnemyEntity : MonoBehaviour
 
     private void Start()
     {
-        _currentHealth = _enemySO.enemyHealth;
+        _currentHealth = enemySO.enemyHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +37,7 @@ public class EnemyEntity : MonoBehaviour
 
         if (collision.transform.TryGetComponent(out Player player))
         {
-            player.TakeDamage(transform, _enemySO.enemyDamageAmount);
+            player.TakeDamage(transform, enemySO.enemyDamageAmount);
         }
     }
 
