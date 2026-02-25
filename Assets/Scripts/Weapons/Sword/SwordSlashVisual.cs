@@ -5,12 +5,15 @@ public class SwordSlashVisual : MonoBehaviour
 {
     [SerializeField] private Sword sword;
 
-    private Animator animator;
-    private const string ATTACK = "Attack";
+    private Animator _animator;
+
+    private static readonly int AttackHash = Animator.StringToHash(Attack);
+
+    private const string Attack = "Attack";
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -25,6 +28,6 @@ public class SwordSlashVisual : MonoBehaviour
 
     private void Sword_OnSwordSwing(object sender, System.EventArgs e)
     {
-        animator.SetTrigger(ATTACK);
+        _animator.SetTrigger(AttackHash);
     }
 }

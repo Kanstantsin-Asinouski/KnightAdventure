@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    [SerializeField] private Sword _sword;
+    [SerializeField] private Sword sword;
 
     public static ActiveWeapon Instance { get; private set; }
 
@@ -19,7 +19,7 @@ public class ActiveWeapon : MonoBehaviour
 
     public Sword GetActiveWeapon()
     {
-        return _sword;
+        return sword;
     }
 
     private void FollowMousePosition()
@@ -27,13 +27,6 @@ public class ActiveWeapon : MonoBehaviour
         Vector3 mousePosition = GameInput.Instance.GetMousePosition();
         Vector3 playerPosition = Player.Instance.GetPlayerPosition();
 
-        if (mousePosition.x < playerPosition.x)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        transform.rotation = Quaternion.Euler(0, mousePosition.x < playerPosition.x ? 180 : 0, 0);
     }
 }

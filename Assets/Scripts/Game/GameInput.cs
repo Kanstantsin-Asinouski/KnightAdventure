@@ -25,9 +25,9 @@ public class GameInput : MonoBehaviour
         return _playerInputActions.Player.Move.ReadValue<Vector2>();
     }
 
-    public Vector3 GetMousePosition()
+    public Vector2 GetMousePosition()
     {
-        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Vector2 mousePos = Mouse.current.position.ReadValue();
         return mousePos;
     }
 
