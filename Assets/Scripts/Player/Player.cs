@@ -40,11 +40,6 @@ public class Player : MonoBehaviour
         GameInput.Instance.OnPlayerAttack += GameInput_OnPlayerAttack;
     }
 
-    private void OnDestroy()
-    {
-        GameInput.Instance.OnPlayerAttack -= GameInput_OnPlayerAttack;
-    }
-
     public void Update()
     {
         _inputVector = GameInput.Instance.GetMovementVector();
