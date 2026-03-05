@@ -10,11 +10,15 @@ public class Player : MonoBehaviour
     public event EventHandler OnPlayerDeath;
     public event EventHandler OnFlashBlink;
 
+    [SerializeField] private float damageRecoveryTime = 0.5f;
+    [Header("Speed Settings")]
     [SerializeField] private float movingSpeed = 5f;
     [SerializeField] private int maxHealth = 10;
-    [SerializeField] private float damageRecoveryTime = 0.5f;
+    [Header("Dash Settings")]
     [SerializeField] private int dashSpeed = 4;
     [SerializeField] private float dashTime = 0.2f;
+    [SerializeField] private float dashCoolDownTime = 0.2f;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private Rigidbody2D _rigidBody;
     private KnockBack _knockBack;
@@ -26,6 +30,7 @@ public class Player : MonoBehaviour
     private bool _isRunning;
     private Vector2 _inputVector;
     private float _initialMovingSpeed;
+    private bool _isDashing;
 
     private void Awake()
     {
@@ -97,20 +102,22 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnPlayerDash(object sender, EventArgs e)
     {
-        Dash();
-    }
-
-    private void Dash()
-    {
-        StartCoroutine(DashRoutine());
+        if (!_isDashing)
+            StartCoroutine(DashRoutine());
     }
 
     private IEnumerator DashRoutine()
     {
+        _isDashing = true;
         movingSpeed *= dashSpeed;
+        trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashTime);
 
+        trailRenderer.emitting = false;
         movingSpeed = _initialMovingSpeed;
+
+        yield return new WaitForSeconds(dashCoolDownTime);
+        _isDashing = false;
     }
 
     private void HandleMovement()
