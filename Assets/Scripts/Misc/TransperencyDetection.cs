@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class TransperencyDetection : MonoBehaviour
 {
-    private const float FULL_NON_TRANSPERENT = 1.0f;
+    private const float FULL_NON_TRANSPARENT = 1.0f;
 
     [Range(0f, 1f)]
     [SerializeField] private float trasperencyAmount = 0.8f;
@@ -18,7 +18,11 @@ public class TransperencyDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<Player>())
+        Player player = collider.attachedRigidbody != null
+            ? collider.attachedRigidbody.GetComponent<Player>()
+            : null;
+
+        if (player != null)
         {
             if (collider is CapsuleCollider2D)
             {
@@ -33,7 +37,11 @@ public class TransperencyDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<Player>())
+        Player player = collider.attachedRigidbody != null
+            ? collider.attachedRigidbody.GetComponent<Player>()
+            : null;
+
+        if (player != null)
         {
             if (collider is CapsuleCollider2D)
             {
@@ -41,7 +49,7 @@ public class TransperencyDetection : MonoBehaviour
                     _spriteRenderer,
                     fadeTime,
                     _spriteRenderer.color.a,
-                    FULL_NON_TRANSPERENT));
+                    FULL_NON_TRANSPARENT));
             }
         }
     }
